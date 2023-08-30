@@ -1,4 +1,5 @@
 const express = require('express')
+const router = express.Router()
 require('dotenv').config()
 
 const app = express()
@@ -19,9 +20,10 @@ app.post('/', async (req, res) => {
     try {
         const data = await req.body
 
-        res.send(201).json({ data })
+        res.send(JSON.stringify(data))
     } catch (error) {
-        res.send(500).json({ error: error.message })
+
+        console.log(error.message)
     }
 })
 
