@@ -10,7 +10,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
     try {
-        res.status(201).json({ message: "hello world" })
+        const users = await User.find()
+
+        res.status(201).json({ data: users })
     } catch (error) {
         res.send(500).json({ message: message.error })
     }
