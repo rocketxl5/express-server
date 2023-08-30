@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const connectDB = require('./config/db')
+const User = require('./models/User')
 require('dotenv').config()
 
 const app = express()
