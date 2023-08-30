@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const connectDB = require('./config/db')
-const User = require('./models/User')
+// const User = require('./models/User')
 require('dotenv').config()
 
 const app = express()
@@ -13,9 +13,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
     try {
-        const users = await User.find()
+        // const users = await User.find()
 
-        res.sendStatus(201).json({ data: users })
+        // res.sendStatus(201).json({ data: users })
+        res.send("get succeeded")
     } catch (error) {
         res.sendStatus(500).json({ message: message.error })
     }
@@ -23,9 +24,10 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const data = await req.body
+        // const data = await req.body
 
-        res.sendStatus(JSON.stringify(data))
+        // res.sendStatus(JSON.stringify(data))
+        res.send("post succeeded")
     } catch (error) {
 
         console.log(error.message)
