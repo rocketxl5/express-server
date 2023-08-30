@@ -14,9 +14,9 @@ app.get('/', async (req, res) => {
     try {
         const users = await User.find()
 
-        res.status(201).json({ data: users })
+        res.sendStatus(201).json({ data: users })
     } catch (error) {
-        res.send(500).json({ message: message.error })
+        res.sendStatus(500).json({ message: message.error })
     }
 })
 
@@ -24,7 +24,7 @@ app.post('/', async (req, res) => {
     try {
         const data = await req.body
 
-        res.send(JSON.stringify(data))
+        res.sendStatus(JSON.stringify(data))
     } catch (error) {
 
         console.log(error.message)
