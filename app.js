@@ -1,37 +1,26 @@
 const express = require('express')
-const router = express.Router()
+// const compression = require('compression')
 const connectDB = require('./config/db')
-// const User = require('./models/User')
 require('dotenv').config()
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 connectDB()
 
+// Middlewares
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    req.header("Access-Control-Allow-Methods", "*")
+    next()
+})
+
+// app.use(compression())
+
 app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
-// console.log(__dirname)
-app.get('/', async (req, res) => {
-    try {
-        // const users = await User.find()
 
-        // res.sendStatus(201).json({ data: users })
-        res.send("get succeeded")
-    } catch (error) {
-        res.sendStatus(500).json({ message: message.error })
-    }
-})
+const usersRouter = require('./routes/users.js')
 
-app.post('/', async (req, res) => {
-    try {
-        // const data = await req.body
-
-        // res.sendStatus(JSON.stringify(data))
-        res.send("post succeeded")
-    } catch (error) {
-
-        console.log(error.message)
-    }
-})
+app.use('/api/users', usersRouter)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
