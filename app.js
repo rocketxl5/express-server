@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-// const connectDB = require('./config/db')
+const connectDB = require('./config/db')
 // const User = require('./models/User')
 require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 8080
-// connectDB()
+connectDB()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
